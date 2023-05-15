@@ -85,6 +85,7 @@ class KNearestNeighbor(object):
         num_train = self.X_train.shape[0]
         dists = np.zeros((num_test, num_train))
 
+        # broadcasting mechanism
         for i in range(num_test):
             dict[i, :] = np.sqrt(np.sum(np.square(self.X_train - X[i, :]), axis=1))
 
@@ -110,7 +111,7 @@ class KNearestNeighbor(object):
         #       A^2: (M, D), A*B': (N, 1)x(1, M), (B^2)': (1, N)
         test_square_sum = np.sum(np.square(X), axis=1).reshape(num_test, 1)
         train_square_sum = np.sum(np.square(self.X_train), axis=1).reshape(1, num_train)
-        inner_product = np.dot(X, self.X_train.T)
+        inner_product = np.dot(X, self.X_train.T) #broadcasting mechanism
 
         dists = np.sqrt(test_square_sum + train_square_sum - 2*inner_product)
 
