@@ -143,5 +143,3 @@ class KNearestNeighbor(object):
 
         return y_pred
 
-
-
